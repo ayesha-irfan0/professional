@@ -19,7 +19,7 @@ export default function ProductCard({ product }: { product: Product }) {
       <h2 className="text-lg font-semibold text-gray-900">{product.name}</h2>
       <p className="text-pink-600 font-bold text-lg">${product.price}</p>
       <Link
-        href={`/products/${product.id}`}
+        href={`/shop/${product.id}`}
         className="mt-4 bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-full font-semibold transition shadow-lg hover:shadow-xl"
       >
         View Product
