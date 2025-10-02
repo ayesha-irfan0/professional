@@ -1,21 +1,24 @@
-import "../app/globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { ReactNode } from "react";
+import "./globals.css"; // <-- fixed path
 import { CartProvider } from "../context/CartContext";
 
 export const metadata = {
-  title: "Fashion Website",
-  description: "Professional Fashion Website with Next.js + Tailwind + TypeScript",
+  title: "Professional Fashion Site",
+  description: "Next.js + TailwindCSS Fashion Website",
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
-      <body className="flex flex-col min-h-screen">
+      <body>
         <CartProvider>
           <Navbar />
-          <main className="flex-1">{children}</main>
+          {children}
           <Footer />
         </CartProvider>
       </body>

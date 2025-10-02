@@ -1,29 +1,41 @@
 "use client";
-import Image from "next/image";
-import Link from "next/link";
-import { Product } from "data/products";
 
-export default function ProductCard({ product }: { product: Product }) {
+interface ProductCardProps {
+  id: number;
+  title: string;
+  image: string;
+  price: number;
+  onAddToCart?: () => void;
+}
+
+export default function ProductCard({
+  id,
+  title,
+  image,
+  price,
+  onAddToCart,
+}: ProductCardProps) {
   return (
-    <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1 flex flex-col items-center p-4">
-      <div className="relative w-full h-80 mb-4">
-        <Image
-          src={product.image}
-          alt={product.name}
-          fill
-          style={{ objectFit: "cover" }}
-          className="rounded-2xl"
-          priority
+    <div className="bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
+      {/* Image container with fixed height */}
+      <div className="h-28 sm:h-32 md:h-36 flex justify-center items-center bg-gray-50">
+        <img
+          src={image}
+          alt={title}
+          className="max-h-full w-auto object-contain"
         />
       </div>
-      <h2 className="text-lg font-semibold text-gray-900">{product.name}</h2>
-      <p className="text-pink-600 font-bold text-lg">${product.price}</p>
-      <Link
-        href={`/shop/${product.id}`}
-        className="mt-4 bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-full font-semibold transition shadow-lg hover:shadow-xl"
-      >
-        View Product
-      </Link>
+
+      <div className="p-4 flex flex-col flex-1">
+        <h3 className="font-bold text-lg mb-2">{title}</h3>
+        <p className="text-gray-600 mb-4">${price}</p>
+        <button
+          onClick={onAddToCart}
+          className="mt-auto bg-pink-500 text-white py-2 rounded hover:bg-pink-600 transition"
+        >
+          Add to Cart
+        </button>
+      </div>
     </div>
   );
 }

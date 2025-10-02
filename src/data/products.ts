@@ -1,15 +1,52 @@
 export interface Product {
-  id: string;
-  name: string;
-  price: number;
+  id: number;
+  title: string;
   image: string;
+  price: number;
+  description: string;
 }
 
 export const products: Product[] = [
-  { id: "product1", name: "Red Dress", price: 120, image: "/images/products/product1.jpg" },
-  { id: "product2", name: "Blue Jacket", price: 150, image: "/images/products/product2.jpg" },
-  { id: "product3", name: "Yellow Skirt", price: 80, image: "/images/products/product3.jpg" },
-  { id: "product4", name: "Black Trousers", price: 100, image: "/images/products/product4.jpg" },
-  { id: "product5", name: "White Blouse", price: 90, image: "/images/products/product5.jpg" },
-  { id: "product6", name: "Green Coat", price: 200, image: "/images/products/product6.jpg" },
+  {
+    id: 1,
+    title: "Elegant Dress",
+    image: "/images/products/product1.jpg",
+    price: 120,
+    description: "Stylish and comfortable dress for all occasions.",
+  },
+  {
+    id: 2,
+    title: "Casual Jacket",
+    image: "/images/products/product2.jpg",
+    price: 90,
+    description: "Trendy jacket for everyday wear.",
+  },
+  {
+    id: 3,
+    title: "Summer Outfit",
+    image: "/images/products/product3.jpg",
+    price: 75,
+    description: "Light and cool outfit for summer.",
+  },
+  {
+    id: 4,
+    title: "Evening Gown",
+    image: "/images/products/product4.jpg",
+    price: 150,
+    description: "Elegant gown for special evenings.",
+  },
+  {
+    id: 5,
+    title: "Streetwear Hoodie",
+    image: "/images/products/product5.jpg",
+    price: 65,
+    description: "Comfortable hoodie for casual style.",
+  },
+  {
+    id: 6,
+    title: "Denim Jeans",
+    image: "/images/products/product6.jpg",
+    price: 80,
+    description: "Classic denim jeans with perfect fit.",
+  },
 ];

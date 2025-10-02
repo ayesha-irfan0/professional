@@ -1,37 +1,50 @@
 "use client";
+
 import { useState, useEffect } from "react";
-import Image from "next/image";
 
 const banners = [
   "/images/banners/banner1.jpg",
   "/images/banners/banner2.jpg",
-  "/images/banners/banner3.jpg"
+  "/images/banners/banner3.jpg",
+  "/images/banners/banner4.jpg",
+  "/images/banners/banner5.jpg",
 ];
 
 export default function HomeSlider() {
-  const [idx, setIdx] = useState(0);
+  const [current, setCurrent] = useState(0);
 
+  // Auto slide every 3 seconds
   useEffect(() => {
-    const timer = setInterval(() => setIdx(i => (i + 1) % banners.length), 4000);
-    return () => clearInterval(timer);
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % banners.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="relative w-full h-[600px] md:h-[700px] lg:h-[800px] overflow-hidden">
-      <Image
-        src={banners[idx]}
-        alt={`Banner ${idx + 1}`}
-        fill
-        style={{ objectFit: "cover" }}
-        priority
-      />
-      <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white px-4">
-        <h1 className="text-5xl md:text-6xl font-bold drop-shadow-lg">
-          Luxury Fashion Collection
-        </h1>
-        <p className="mt-4 text-xl md:text-2xl drop-shadow-md">
-          Style, Comfort & Elegance
-        </p>
+    <div className="relative w-full overflow-hidden rounded-b-xl">
+      {/* Fixed container height */}
+      <div className="flex justify-center items-center h-32 sm:h-36 md:h-40 bg-gray-100">
+        <img
+          key={current}
+          src={banners[current]}
+          alt={`Banner ${current + 1}`}
+          className="h-full w-auto object-contain transition-all duration-700"
+        />
+      </div>
+
+      {/* Navigation dots */}
+      <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 flex gap-2">
+        {banners.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrent(index)}
+            className={`w-3 h-3 rounded-full ${
+              index === current ? "bg-pink-500" : "bg-gray-300"
+            }`}
+          />
+        ))}
       </div>
     </div>
   );
